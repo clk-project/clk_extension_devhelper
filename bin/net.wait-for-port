@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+source "_clk.sh"
+
+clk_usage () {
+    cat<<EOF
+$0
+
+Wait for a given port
+--
+A:port-number:int:The port to wait for
+EOF
+}
+
+clk_help_handler "$@"
+
+while ! nc -z localhost "${CLK___PORT_NUMBER}"
+do
+    sleep 1
+done
