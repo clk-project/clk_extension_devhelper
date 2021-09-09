@@ -9,12 +9,13 @@ $0
 Wait for a given port
 --
 A:port-number:int:The port to wait for
+O:--host:str:The host to wait for:localhost
 EOF
 }
 
 clk_help_handler "$@"
 
-while ! nc -z localhost "${CLK___PORT_NUMBER}"
+while ! nc -z "${CLK___HOST}" "${CLK___PORT_NUMBER}"
 do
     sleep 1
 done
