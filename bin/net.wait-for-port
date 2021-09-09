@@ -10,6 +10,7 @@ Wait for a given port
 --
 A:port-number:int:The port to wait for
 O:--host:str:The host to wait for:localhost
+F:--verbose/--quiet:Indicate what is being waited for
 EOF
 }
 
@@ -17,5 +18,9 @@ clk_help_handler "$@"
 
 while ! nc -z "${CLK___HOST}" "${CLK___PORT_NUMBER}"
 do
+    if [ -n "${CLK___VERBOSE}" ]
+    then
+        echo "Waiting for ${CLK___HOST}:${CLK___PORT_NUMBER}"
+    fi
     sleep 1
 done
