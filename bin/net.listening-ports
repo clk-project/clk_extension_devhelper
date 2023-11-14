@@ -14,7 +14,15 @@ EOF
 
 clk_help_handler "$@"
 
-netstat -tupln | {
+
+{
+    if command -v netstat > /dev/null
+    then
+        netstat -tupln
+    else
+        ss --listening --processes --numeric
+    fi
+} | {
     if [ -n "${CLK___FILTER}" ]
     then
         grep -i "${CLK___FILTER}"
