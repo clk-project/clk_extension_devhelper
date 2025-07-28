@@ -16,7 +16,7 @@ EOF
 
 clk_help_handler "$@"
 
-while ! nc -z "${CLK___HOST}" "${CLK___PORT_NUMBER}"
+while ! timeout 5s nc -z "${CLK___HOST}" "${CLK___PORT_NUMBER}"
 do
     if [ -n "${CLK___VERBOSE}" ]
     then
